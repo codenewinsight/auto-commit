@@ -1,65 +1,61 @@
-# Automated-Commit
+# Github Automated-Commit
 
-English | [简体中文](README-CN.md) 
 
-This repository contains a GitHub Actions workflow that automatically updates a file named `TIMESTAMP.txt` with the current date and time every 12 hours. This README provides a detailed overview of how the workflow operates and guides you through customizing and using it, especially if you're new to GitHub or GitHub Actions.
+Kho lưu trữ này chứa một quy trình GitHub Actions tự động cập nhật tệp có tên `TIMESTAMP.txt` với ngày và giờ hiện tại sau mỗi 12 giờ. 
+README này cung cấp cái nhìn tổng quan chi tiết về cách hoạt động của quy trình và hướng dẫn bạn tùy chỉnh và sử dụng nó.
+Đặc biệt nếu bạn mới làm quen với GitHub hoặc GitHub Actions.
 
-## Overview
+## Tổng quan  
 
-The `Automated-Commit` workflow demonstrates the capabilities of GitHub Actions for automating routine tasks within a repository. Specifically, this workflow:
+Quy trình `Automated-Commit` minh họa khả năng của GitHub Actions trong việc tự động hóa các tác vụ định kỳ trong kho lưu trữ. 
 
-- Checks out the latest code from the `master` branch.
-- Updates the `TIMESTAMP.txt` file with the current date and time.
-- Commits the change to the repository if any modifications are detected.
-- Pushes the changes back to the `master` branch.
+Cụ thể, quy trình này:  
+- Lấy mã nguồn mới nhất từ nhánh `master`.  
+- Cập nhật tệp `TIMESTAMP.txt` với ngày và giờ hiện tại.  
+- Thực hiện commit thay đổi vào kho lưu trữ nếu phát hiện có sự chỉnh sửa.  
+- Đẩy các thay đổi lên nhánh `master`.  
 
-## Workflow Structure
+## Cấu trúc quy trình  
+Quy trình này được định nghĩa trong tệp `.github/workflows/master.yml` và bao gồm:  
+- **Trigger**: Được cấu hình để chạy mỗi 12 giờ và có thể kích hoạt thủ công qua giao diện GitHub bằng sự kiện `workflow_dispatch`.  
+- **Công việc và các bước**: Chứa một công việc `update_commit` chạy trên môi trường Ubuntu mới nhất, thực hiện các tác vụ như thiết lập Git, cập nhật `TIMESTAMP.txt`, commit và đẩy thay đổi.  
+- **Quyền hạn**: Được cấp quyền ghi vào nội dung kho lưu trữ.  
 
-The workflow is defined in the `.github/workflows/master.yml` file and includes:
+## Hướng dẫn sử dụng  
 
-- **Triggers**: Configured to run every 12 hours and can be manually triggered via the GitHub UI with the `workflow_dispatch` event.
-- **Jobs and Steps**: Contains a job `update_commit` that runs on the latest Ubuntu runner, performing tasks such as setting up Git, updating `TIMESTAMP.txt`, and committing and pushing changes.
-- **Permissions**: Granted write permissions to the repository contents.
+### Tạo phiên bản của riêng bạn  
 
-## Using This Workflow
+Để tạo phiên bản riêng của kho lưu trữ và quy trình này:
 
-### Creating Your Own Version
+Truy cập link: https://github.com/dante4rt/automated-commit  
 
-To create your own version of this repository and workflow:
+1. Nhấn vào nút "Use this template" trên trang kho lưu trữ GitHub (Góc trên bên phải).  
+2. Chọn "Create new repository".  
+3. Tick chọn "Include all branches"
+4. Đặt tên cho Repository name
+5. Chọn Private > Create Repository
 
-1. Click the "Use this template" button on the GitHub repository page.
-2. Choose a name for your new repository and select "Create repository from template".
-3. Clone your new repository to make further customizations locally.
+### Tùy chỉnh quy trình  
 
-### Customizing the Workflow
+Trước khi sử dụng quy trình, bạn cần tùy chỉnh email và tên người dùng GitHub của mình:  
 
-Before using the workflow, you'll need to customize it with your GitHub user email and name:
+1. Điều hướng đến tệp `.github/workflows/master.yml` trong kho lưu trữ của vừa clone về.  
+2. Chỉnh sửa tệp, thay `"rxmxdhxni@gmail.com"` bằng email của bạn và `"dante4rt"` bằng tên người dùng GitHub của bạn trong bước `Setup Git Configuration`.  
+3. Commit các thay đổi.  
 
-1. Navigate to the `.github/workflows/master.yml` file in your repository.
-2. Edit the file, replacing `"rxmxdhxni@gmail.com"` with your email and `"dante4rt"` with your GitHub username in the `Setup Git Configuration` step.
-3. Commit your changes.
 
-### Viewing Workflow Runs
+### Xem lịch sử chạy quy trình  
 
-To view the history of workflow runs:
+Để xem lịch sử chạy của quy trình:  
 
-1. Navigate to the `Actions` tab of your repository.
-2. Select the `Automated-Commit` workflow to see details of each run.
+1. Điều hướng đến tab `Actions` trong kho lưu trữ của bạn.  
+2. Chọn quy trình `Automated-Commit` để xem chi tiết từng lần chạy.  
 
-### Manually Triggering the Workflow
 
-You can manually trigger the workflow:
+### Kích hoạt quy trình thủ công  
 
-1. Go to the `Actions` tab of your repository.
-2. Select the `Automated-Commit` workflow.
-3. Click `Run workflow`, select `master`, and click `Run workflow` again.
+Bạn có thể kích hoạt quy trình thủ công bằng cách dưới đây để kiểm tra code có hoạt động hay không
 
-## Contributing
-
-Contributions are welcome! Feel free to fork the repository, make your changes, and submit a pull request.
-
-## Support
-
-For issues or questions, please file an issue in the `Issues` section of the repository.
-
-Thank you for exploring the Automated-Commit workflow!
+1. Đi tới tab `Actions` trong kho lưu trữ của bạn.  
+2. Chọn quy trình `Automated-Commit`.  
+3. Nhấn `Run workflow`, chọn `master`, sau đó nhấn `Run workflow` lần nữa và chờ trong khoảng 1 phút
